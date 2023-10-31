@@ -1,0 +1,33 @@
+---End Station
+SELECT
+  DISTINCT end_station_name,
+  SUM(tripduration) AS tripduration,
+  end_station_id
+FROM
+  `bigquery-public-data.new_york_citibike.citibike_trips`
+WHERE
+  tripduration IS NOT NULL
+GROUP BY
+  end_station_id,
+  end_station_name
+ORDER BY
+  tripduration DESC
+LIMIT
+  10
+
+----Start Station
+SELECT
+  DISTINCT start_station_name,
+  SUM(tripduration) AS tripduration,
+  start_station_id
+FROM
+  `bigquery-public-data.new_york_citibike.citibike_trips`
+WHERE
+  tripduration IS NOT NULL
+GROUP BY
+  start_station_id,
+  start_station_name
+ORDER BY
+  tripduration DESC
+LIMIT
+  10
