@@ -1,0 +1,46 @@
+---
+title: "ggplot2_hook"
+author: "aayush"
+date: "2024-01-25"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+## Setting up my enviroment
+Setting up my enviroment by loading 'tidyverse' and 'palmer penguins' packages
+
+```{r loading packages, message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## plotting Penguins data
+```{r ggplot for penguin data visualization, echo=FALSE, message=FALSE, warning=FALSE}
+
+ggplot(data = penguins) +
+
+  geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g))
+
+```
+## Plotting based on Species
+```{r Plotting based on Species, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data=penguins,aes(x=flipper_length_mm,y=body_mass_g))+
+  geom_point(aes(shape=species))
+```
+
+```{r}
+ggplot(data=penguins,aes(x=flipper_length_mm,y=body_mass_g))+
+  geom_point(aes(color=species,
+                 shape=species)) +
+  facet_wrap(~sex)
+```
+## Plotting while removing NA values
+```{r Plotting while removing NA values}
+penguins %>%
+  drop_na(sex) %>%
+  ggplot()+geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species,shape=species)) +
+  facet_wrap(~sex)
+```
+

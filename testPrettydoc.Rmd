@@ -1,0 +1,9 @@
+---
+title: "TestPrettydoc"
+author: "Aayush"
+date: "01/24/2024"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
